@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengeluaran Harian</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loginPage" class="auth-wrap">
+    <div class="auth-card">
+      <div class="brand">Pengeluaran Harian</div>
+      <h1>Masuk</h1>
+      <p class="muted">Catat pengeluaranmu dan akses dari perangkat mana pun.</p>
+      <form id="loginForm">
+        <label>Email<input id="loginEmail" type="email" required placeholder="email@contoh.com"></label>
+        <label>Password<input id="loginPassword" type="password" required placeholder="••••••••"></label>
+        <button class="btn primary full" type="submit">Masuk</button>
+      </form>
+      <p id="loginMsg" class="msg"></p>
+      <button id="showRegister" class="link-btn">Belum punya akun? Daftar</button>
+    </div>
+  </div>
+
+  <div id="registerPage" class="auth-wrap hidden">
+    <div class="auth-card">
+      <div class="brand">Pengeluaran Harian</div>
+      <h1>Buat Akun</h1>
+      <p class="muted">Satu akun bisa dipakai di HP dan laptop.</p>
+      <form id="registerForm">
+        <label>Email<input id="registerEmail" type="email" required placeholder="email@contoh.com"></label>
+        <label>Password<input id="registerPassword" type="password" minlength="6" required placeholder="Minimal 6 karakter"></label>
+        <button class="btn primary full" type="submit">Daftar</button>
+      </form>
+      <p id="registerMsg" class="msg"></p>
+      <button id="showLogin" class="link-btn">Sudah punya akun? Masuk</button>
+    </div>
+  </div>
+
+  <div id="app" class="hidden">
+    <header class="topbar">
+      <div>
+        <div class="brand">Pengeluaran Harian</div>
+        <!-- <div id="userEmail" class="muted small"></div> -->
+      </div>
+      <button id="logoutBtn" class="btn outline">Keluar</button>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <h1>Rekap Pengeluaran</h1>
+          <p class="muted">Kelola pengeluaran harian Senin sampai Minggu.</p>
+        </div>
+        <div class="week-picker">
+          <button id="prevWeek" class="btn outline">←</button>
+          <div id="weekLabel"></div>
+          <button id="nextWeek" class="btn outline">→</button>
+          <button id="currentWeek" class="btn outline">Minggu Ini</button>
+        </div>
+      </section>
+
+      <section class="stats">
+        <div class="stat"><span>Hari Ini</span><strong id="todayTotal">Rp0</strong></div>
+        <div class="stat"><span>Total Minggu</span><strong id="weekTotal">Rp0</strong></div>
+        <div class="stat"><span>Transaksi</span><strong id="transactionCount">0</strong></div>
+        <div class="stat"><span>Rata-rata / Hari</span><strong id="averageTotal">Rp0</strong></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <div><h2 id="formTitle">Tambah Pengeluaran</h2><p class="muted">Data tersimpan online di akunmu.</p></div>
+        </div>
+        <form id="expenseForm" class="form-grid">
+          <input type="hidden" id="expenseId">
+          <label>Tanggal<input id="date" type="date" required></label>
+          <label>Kategori
+            <select id="category" required>
+              <option value="">Pilih kategori</option>
+              <option>Makanan</option><option>Minuman</option><option>Bensin</option>
+              <option>Transportasi</option><option>Pulsa</option><option>Belanja</option>
+              <option>Kuliah</option><option>Hiburan</option><option>Kesehatan</option>
+              <option>Tagihan</option><option>Lainnya</option>
+            </select>
+          </label>
+          <label>Keterangan<input id="description" type="text" maxlength="120" required placeholder="Contoh: Makan siang"></label>
+          <label>Nominal (Rp)<input id="amount" type="number" min="1" step="1" required placeholder="15000"></label>
+          <div class="form-actions">
+            <button class="btn primary" type="submit" id="saveBtn">+ Simpan Pengeluaran</button>
+            <button class="btn outline hidden" type="button" id="cancelEdit">Batal Edit</button>
+          </div>
+        </form>
+        <p id="formMsg" class="msg"></p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <div><h2>Rekap Senin–Minggu</h2><p class="muted">Pengeluaran dikelompokkan berdasarkan hari.</p></div>
+          <div class="actions">
+            <button id="exportCsv" class="btn outline">⬇ CSV</button>
+            <button id="exportExcel" class="btn outline">⬇ Excel</button>
+            <button id="exportPdf" class="btn outline">⬇ PDF</button>
+          </div>
+        </div>
+        <div id="days"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
