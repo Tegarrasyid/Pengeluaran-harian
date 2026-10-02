@@ -40,8 +40,6 @@ Karena ini website statis, tidak membutuhkan PHP/Laravel/XAMPP.
 - Total hari ini
 - Total mingguan
 - Jumlah transaksi
-- Export CSV
-- Export Excel
 - Export PDF
 - Data tersimpan di Supabase dan bisa diakses dari perangkat lain dengan akun yang sama
 - RLS: setiap akun hanya bisa membaca/mengubah datanya sendiri
