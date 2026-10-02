@@ -97,12 +97,36 @@
         <div class="panel-title">
           <div><h2>Rekap Senin–Minggu</h2><p class="muted">Pengeluaran dikelompokkan berdasarkan hari.</p></div>
           <div class="actions">
-            <button id="exportCsv" class="btn outline">⬇ CSV</button>
-            <button id="exportExcel" class="btn outline">⬇ Excel</button>
-            <button id="exportPdf" class="btn outline">⬇ PDF</button>
+            <button id="openDownload" class="btn outline">⬇ Download Laporan</button>
           </div>
         </div>
         <div id="days"></div>
+      </section>
+
+      <section id="downloadPanel" class="panel hidden">
+        <div class="panel-title">
+          <div>
+            <h2>Download Laporan</h2>
+            <p class="muted">Pilih minggu awal dan minggu akhir. Semua transaksi dalam rentang tersebut akan ikut diunduh.</p>
+          </div>
+          <button id="closeDownload" class="btn outline" type="button">Tutup</button>
+        </div>
+
+        <div class="form-grid">
+          <label>Minggu mulai
+            <input id="downloadStart" type="date" required>
+          </label>
+          <label>Minggu sampai
+            <input id="downloadEnd" type="date" required>
+          </label>
+        </div>
+
+        <p class="muted small">Tanggal yang dipilih otomatis dianggap sebagai minggu tersebut. Rentang akan disesuaikan dari hari Senin sampai Minggu.</p>
+
+        <div class="actions">
+          <button id="downloadPdf" class="btn outline" type="button">⬇ PDF</button>
+        </div>
+        <p id="downloadMsg" class="msg"></p>
       </section>
     </main>
   </div>
